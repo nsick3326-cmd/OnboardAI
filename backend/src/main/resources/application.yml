@@ -1,0 +1,54 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: onboardai-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 15MB
+
+# Management & Health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# OpenAPI / Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+# Security & Application Settings
+app:
+  jwt:
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000} # 24 hours
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+  storage:
+    location: ${STORAGE_LOCATION:./storage/documents}
+  ai:
+    provider: ${AI_PROVIDER:openai}
+    api-key: ${AI_API_KEY:}
+    api-url: ${AI_API_URL:https://api.openai.com/v1/chat/completions}
+    model: ${AI_MODEL:gpt-4o-mini}
+  frontend:
+    url: ${FRONTEND_URL:http://localhost:5173}
+  setup:
+    secret-key: ${SETUP_SECRET_KEY:OnboardAI-Admin-Setup-Secret-2026}
+  mail:
+    from: ${APP_MAIL_FROM:no-reply@onboardai.io}
+    from-name: ${APP_MAIL_FROM_NAME:OnboardAI Team}

@@ -1,0 +1,30 @@
+# Environments & Credentials
+.env
+.env.local
+*.env
+!.env.example
+application-local.yml
+
+# Backend Build & IDE
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+.idea/
+*.iml
+.vscode/
+*.log
+
+# Frontend Build & Dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/.turbo/
+.npm
+*.tsbuildinfo
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+uploads/
+storage/
+backend/storage/
+temp/
